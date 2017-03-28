@@ -23,7 +23,7 @@ public class StepDefinitions {
 
 	@Before
 	public void setup() throws InterruptedException, IOException {
-		System.setProperty("webdriver.chrome.driver", "build/resources/test/chrome/linux64/chromedriver");
+		System.setProperty("webdriver.chrome.driver", "build/resources/test/chrome/mac64/chromedriver");
 
 		webDriver = new ChromeDriver();
 
@@ -85,9 +85,9 @@ public class StepDefinitions {
 		webDriver.switchTo().activeElement();
 	}
 
-	@When("^I sleep for (\\d+) miliseconds$")
-	public void I_sleep_for(int miliseconds) throws InterruptedException {
-		Thread.sleep(miliseconds);
+	@When("^I sleep for (\\d+) milliseconds$")
+	public void I_sleep_for(int milliseconds) {
+		sleep(milliseconds);
 	}
 
 	// Functions
@@ -98,6 +98,8 @@ public class StepDefinitions {
 		path = path.replace("{access_name}", label);
 
 		webDriver.findElement(By.xpath(path)).click();
+
+		sleep(1000);
 	}
 
 	public void input(String type, String label, String text) {
@@ -106,6 +108,15 @@ public class StepDefinitions {
 		path = path.replace("{access_name}", label);
 
 		webDriver.findElement(By.xpath(path)).sendKeys(text);
+	}
+
+	public void sleep(long milliseconds) {
+		try {
+			Thread.sleep(milliseconds);
+		}
+		catch (InterruptedException ie) {
+			// Do nothing
+		}
 	}
 
 	protected WebDriver webDriver;
