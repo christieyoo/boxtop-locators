@@ -1,5 +1,5 @@
 {
-	"text_field": "//label[text()='{access_name} ']/following-sibling::input | //input[@title=' {access_name} ']",
+	"text_field": "//label[text()=' {access_name} ']/following-sibling::input | //input[@title=' {access_name} ']",
 	"link": "//a[text()='{access_name}']",
 	"button": "//button/span[text()='{access_name}']"
 }
