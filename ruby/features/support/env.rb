@@ -27,5 +27,5 @@ end
 
 set_selenium_window_size(1300, 768)
 
-file = File.read('../locators/portal.json')
+file = File.read('../locators/base.json')
 $locators_hash = JSON.parse(file)

@@ -121,7 +121,7 @@ public class StepDefinitions {
 	}
 
 	protected WebDriver webDriver;
-	protected File locatorsFile = new File("../locators/portal.json");
+	protected File locatorsFile = new File("../locators/base.json");
 	protected Map<String, String> locatorsHash = new HashMap<>();
 
 }
