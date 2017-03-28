@@ -107,6 +107,7 @@ public class StepDefinitions {
 
 		path = path.replace("{access_name}", label);
 
+		webDriver.findElement(By.xpath(path)).clear();
 		webDriver.findElement(By.xpath(path)).sendKeys(text);
 	}
 
