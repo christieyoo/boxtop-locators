@@ -1,0 +1,23 @@
+{
+	"product_menu_toggle": {
+		"xpath": "//a[@data-qa-id='productMenu']"
+	},
+	"product_menu_body": {
+		"xpath": "//div[@data-qa-id='productMenuBody']"
+	},
+	"product_menu_control_panel": {
+		"xpath": "//a/span[text()='Control Panel']"
+	},
+	"product_menu_panel_title": {
+		"xpath": "//div[@class='panel-title']//span[text()=' {access_name} ']"
+	},
+	"product_menu_collapsed_panel": {
+		"xpath": "//a[contains(@class,'collapsed')]//span[contains(.,'{access_name}')]"
+	},
+	"product_menu_collapsed_submenu": {
+		"xpath": "//a[@aria-expanded=\"false\" and text()=' {access_name} ']"
+	},
+	"product_menu_public_pages_ellipsis": {
+		"xpath": "//a[@data-qa-id=\"publicPagesOptions\"]"
+	}
+}
