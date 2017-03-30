@@ -1,5 +1,4 @@
-Feature:  Workflow Admin Web Content Display
-	Any description you want over here.
+Feature:  Liferay Portal
 
 Background:
 #	Given I sign in to Liferay Portal as "test@liferay.com"
