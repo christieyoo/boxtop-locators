@@ -8,9 +8,9 @@ module BaseActions
 
 		if xpath
 			xpath = xpath.gsub(/{access_name}/, label) if label
-			page.find(:xpath, xpath)
+			page.find(:xpath, xpath, wait: 15)
 		else
-			page.find(:css, css)
+			page.find(:css, css, wait: 15)
 		end
 	end
 
@@ -18,12 +18,12 @@ module BaseActions
 		BaseActions::element(type, label: label).click
 	end
 
-	def css(type, opts={})
+	def css(type)
 		$locators_hash[type]['css']
 	end
 
 	def has_success_message?
-		BaseActions::element("alert-success").visible?
+		BaseActions::element("alert_success").visible?
 	end
 
 	def input(type, text, label='')
@@ -34,8 +34,8 @@ module BaseActions
 		BaseActions::element(type, label: item).click
 	end
 
-	def xpath(type, opts={})
-		$locators_hash[type]['xpath']
+	def xpath(type, access_name='')
+		$locators_hash[type]['xpath'].gsub(/{access_name}/, access_name)
 	end
 end
 

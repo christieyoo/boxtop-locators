@@ -9,8 +9,7 @@ class ProductMenu < BasePage
 	end
 
 	def self.expand_panel(name)
-		path = xpath("product_menu_collapsed_panel")
-		path = path.gsub(/{access_name}/, name)
+		path = xpath("product_menu_collapsed_panel", name)
 
 		if page.has_xpath? path, wait: 1
 			click 'product_menu_panel_title', name
@@ -18,8 +17,7 @@ class ProductMenu < BasePage
 	end
 
 	def self.expand_submenu(name)
-		path = xpath("product_menu_collapsed_submenu")
-		path = path.gsub(/{access_name}/, name)
+		path = xpath("product_menu_collapsed_submenu", name)
 
 		if page.has_xpath? path, wait: 1
 			click 'link', name
