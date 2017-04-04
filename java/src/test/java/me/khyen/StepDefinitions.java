@@ -1,6 +1,7 @@
 package me.khyen;
 
 import cucumber.api.java.en.When;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.Before;
 import cucumber.api.java.After;
@@ -30,7 +31,7 @@ public class StepDefinitions {
 		locatorsHash = getLocatorsHash(locatorsFile);
 	}
 
-	public Map<String, String> getLocatorsHash(File locatorsFile) throws IOException {
+	public Map<String, Map<String, String>> getLocatorsHash(File locatorsFile) throws IOException {
 		String jsonString = FileUtils.readFileToString(locatorsFile, Charset.defaultCharset());
 
 		JSONObject jsonObject = new JSONObject(jsonString);
@@ -41,8 +42,16 @@ public class StepDefinitions {
 
 		while (i.hasNext()) {
 			String name = i.next();
+			JSONObject nestedJSON = jsonObject.getJSONObject(name);
+			Iterator<String> j = nestedJSON.keys();
+			Map<String, String> tempHash = new HashMap<>();
+			
+			while (j.hasNext()) {
+				String key = j.next();
+				tempHash.put(key, nestedJSON.getString(key));
+			}
 
-			locatorsHash.put(name, jsonObject.getString(name));
+			locatorsHash.put(name, tempHash);
 		}
 
 		return locatorsHash;
@@ -65,6 +74,11 @@ public class StepDefinitions {
 		click("button","Sign In");
 	}
 
+	@Then("^I should be signed in$")
+    public void i_should_be_signed_in() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+    }
+	
 	@Given("^I visit \"([^\"]*)\"$")
 	public void I_visit(String url) {
 		webDriver.get(url);
@@ -93,7 +107,7 @@ public class StepDefinitions {
 	// Functions
 
 	public void click(String type, String label) {
-		String path = locatorsHash.get(type);
+		String path = locatorsHash.get(type).get("xpath");
 
 		path = path.replace("{access_name}", label);
 
@@ -103,7 +117,7 @@ public class StepDefinitions {
 	}
 
 	public void input(String type, String label, String text) {
-		String path = locatorsHash.get(type);
+		String path = locatorsHash.get(type).get("xpath");
 
 		path = path.replace("{access_name}", label);
 
@@ -122,6 +136,6 @@ public class StepDefinitions {
 
 	protected WebDriver webDriver;
 	protected File locatorsFile = new File("../locators/base.json");
-	protected Map<String, String> locatorsHash = new HashMap<>();
+	protected Map<String, Map<String, String>> locatorsHash = new HashMap<>();
 
 }
