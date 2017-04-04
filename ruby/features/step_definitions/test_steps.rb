@@ -42,7 +42,7 @@ When(/^I open the "([^"]*)" ellipsis menu$/) do |menu_item|
 end
 
 When(/^I select "([^"]*)" from the dropdown menu$/) do |menu_item|
-	select_item 'dropdown-menu-item', menu_item
+	select_item 'dropdown_menu_item', menu_item
 end
 
 Then(/^I should see the success message$/) do

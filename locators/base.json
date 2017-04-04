@@ -8,10 +8,10 @@
 	"button": {
 		"xpath": "//button/span[text()='{access_name}']"
 	},
-	"dropdown-menu-item": {
+	"dropdown_menu_item": {
 		"xpath": "//li/a[text()='{access_name}']"
 	},
-	"alert-success": {
+	"alert_success": {
 		"css": "div.alert-success"
 	}
 }
