@@ -3,11 +3,11 @@
 		"xpath": "//a[@data-qa-id='productMenu']",
 		"wait_for_present": {
 			"description": "Wait until this element is present when opening menu panel",
-			"xpath": "//a/span[text()='Control Panel']"
+			"element": "product_menu_control_panel"
 		},
 		"wait_for_not_present": {
 			"description": "Wait until this element is not present when closing menu panel",
-			"xpath": "//a/span[text()='Control Panel']"
+			"element": "product_menu_control_panel"
 		}
 	},
 	"product_menu_body": {

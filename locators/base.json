@@ -9,7 +9,7 @@
 		"xpath": "//button/span[text()='{access_name}']",
 		"wait_for_not_present": {
 			"description": "Wait for this element to go away before next steps are executed",
-			"xpath": "//html[@class='lfr-spa-loading']"
+			"element": "spa_loading_bar"
 		}
 	},
 	"dropdown_menu_item": {
@@ -17,5 +17,8 @@
 	},
 	"alert_success": {
 		"css": "div.alert-success"
+	},
+	"spa_loading_bar": {
+		"xpath": "//html[@class='lfr-spa-loading']"
 	}
 }
