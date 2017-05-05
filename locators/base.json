@@ -6,7 +6,11 @@
 		"xpath": "//a[text()='{access_name}'] | //a[text()=' {access_name} ']"
 	},
 	"button": {
-		"xpath": "//button/span[text()='{access_name}']"
+		"xpath": "//button/span[text()='{access_name}']",
+		"wait_for_not_present": {
+			"description": "Wait for this element to go away before next steps are executed",
+			"xpath": "//html[@class='lfr-spa-loading']"
+		}
 	},
 	"dropdown_menu_item": {
 		"xpath": "//li/a[text()='{access_name}']"
