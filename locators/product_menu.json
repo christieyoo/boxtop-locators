@@ -2,11 +2,11 @@
 	"product_menu_toggle": {
 		"xpath": "//a[@data-qa-id='productMenu']",
 		"wait_for_present": {
-			"_desc": "Wait until this element is present when opening menu panel",
+			"description": "Wait until this element is present when opening menu panel",
 			"xpath": "//a/span[text()='Control Panel']"
 		},
 		"wait_for_not_present": {
-			"_desc": "Wait until this element is not present when closing menu panel",
+			"description": "Wait until this element is not present when closing menu panel",
 			"xpath": "//a/span[text()='Control Panel']"
 		}
 	},
