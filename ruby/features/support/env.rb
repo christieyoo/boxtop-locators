@@ -27,5 +27,11 @@ end
 
 set_selenium_window_size(1300, 768)
 
-file = File.read('../locators/base.json')
-$locators_hash = JSON.parse(file)
+# load locators
+$locators_hash = {}
+locator_files = Dir.glob('../locators/*.json')
+
+locator_files.each do |filename|
+  file = File.read(filename)
+  $locators_hash.merge!(JSON.parse(file))
+end

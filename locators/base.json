@@ -1,5 +1,17 @@
 {
-	"text_field": "//label[text()=' {access_name} ']/following-sibling::input | //input[@title=' {access_name} ']",
-	"link": "//a[text()='{access_name}']",
-	"button": "//button/span[text()='{access_name}']"
+	"text_field": {
+		"xpath": "//label[text()=' {access_name} ']/following-sibling::input | //label[text()=' {access_name} ']/following-sibling::span/input | //input[@title=' {access_name} ']"
+	},
+	"link": {
+		"xpath": "//a[text()='{access_name}'] | //a[text()=' {access_name} ']"
+	},
+	"button": {
+		"xpath": "//button/span[text()='{access_name}']"
+	},
+	"dropdown_menu_item": {
+		"xpath": "//li/a[text()='{access_name}']"
+	},
+	"alert_success": {
+		"css": "div.alert-success"
+	}
 }
