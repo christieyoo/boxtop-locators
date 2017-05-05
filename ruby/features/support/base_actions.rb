@@ -1,9 +1,9 @@
 module BaseActions
 	extend Capybara::DSL
 
-	def self.element(type, opts={})
-		xpath = $locators_hash[type]['xpath']
-		css = $locators_hash[type]['css']
+	def self.element(element, opts={})
+		xpath = $locators_hash[element]['xpath']
+		css = $locators_hash[element]['css']
 		label = opts[:label]
 
 		if xpath
@@ -14,28 +14,28 @@ module BaseActions
 		end
 	end
 
-	def click(type, label='')
-		BaseActions::element(type, label: label).click
+	def click(element, label='')
+		BaseActions.element(element, label: label).click
 	end
 
-	def css(type)
-		$locators_hash[type]['css']
+	def css(element)
+		$locators_hash[element]['css']
 	end
 
 	def has_success_message?
-		BaseActions::element("alert_success").visible?
+		BaseActions.element("alert_success").visible?
 	end
 
-	def input(type, text, label='')
-		BaseActions::element(type, label: label).set text
+	def input(element, text, label='')
+		BaseActions.element(element, label: label).set text
 	end
 
-	def select_item(type, item)
-		BaseActions::element(type, label: item).click
+	def select_item(element, item)
+		BaseActions.element(element, label: item).click
 	end
 
-	def xpath(type, access_name='')
-		$locators_hash[type]['xpath'].gsub(/{access_name}/, access_name)
+	def xpath(element, access_name='')
+		$locators_hash[element]['xpath'].gsub(/{access_name}/, access_name)
 	end
 end
 

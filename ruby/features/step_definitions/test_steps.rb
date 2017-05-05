@@ -10,8 +10,8 @@ Given(/^I visit "([^"]*)"$/) do |url|
 	visit url
 end
 
-When(/^I click the "([^"]*)" "([^"]*)"$/) do |label, object|
-	click object, label
+When(/^I click the "([^"]*)" "([^"]*)"$/) do |label, element|
+	click element, label
 end
 
 When(/^I fill in "([^"]*)" with "([^"]*)"$/) do |label, text|
