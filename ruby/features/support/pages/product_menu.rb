@@ -27,7 +27,7 @@ class ProductMenu < BasePage
 	def self.open
 		if page.has_no_xpath? xpath("product_menu_control_panel"), wait: 1
 			click 'product_menu_toggle'
-			page.should have_xpath($locators_hash['product_menu_toggle']['wait_for_present']['xpath'])
+			page.should have_xpath(xpath('product_menu_control_panel'))
 		end
 	end
 end
