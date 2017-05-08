@@ -11,3 +11,4 @@ Scenario:  Log in to Liferay Portal
 	And I fill in "Password" with "test"
 	And I click the "Sign In" "button"
 	Then I should be signed in
+	When I open the Product Side Bar

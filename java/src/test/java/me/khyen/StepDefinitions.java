@@ -24,7 +24,7 @@ public class StepDefinitions {
 
 	@Before
 	public void setup() throws InterruptedException, IOException {
-		System.setProperty("webdriver.chrome.driver", "build/resources/test/chrome/mac64/chromedriver");
+		System.setProperty("webdriver.chrome.driver", "build/resources/test/chrome/win64/chromedriver.exe");
 
 		webDriver = new ChromeDriver();
 
@@ -38,10 +38,12 @@ public class StepDefinitions {
 		webDriver.quit();
 	}
 
-	// Step Definitions
+	/*
+	Step Definitions
+	*/
 
 	@Given("^I sign in to Liferay Portal as \"([^\"]*)\"$")
-	public void I_sign_in_to_Liferay_Portal_as() {
+	public void signIntoPortalAs() {
 		webDriver.get("http://localhost:8080");
 
 		click("link","Sign In");
@@ -51,38 +53,101 @@ public class StepDefinitions {
 	}
 
 	@Then("^I should be signed in$")
-	public void i_should_be_signed_in() throws Throwable {
+	public void shouldBeSignedIn() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
 	}
 	
 	@Given("^I visit \"([^\"]*)\"$")
-	public void I_visit(String url) {
+	public void iVisit(String url) {
 		webDriver.get(url);
 	}
 
 	@When("^I click the \"([^\"]*)\" \"([^\"]*)\"$")
-	public void I_click_the(String label, String object) {
+	public void iClick(String label, String object) {
 		click(object, label);
 	}
 
 	@When("^I fill in \"([^\"]*)\" with \"([^\"]*)\"$")
-	public void I_fill_in_with(String label, String text) {
+	public void fillIn(String label, String text) {
 		input("text_field", label, text);
 	}
 
 	@When("^I switch to active modal$")
-	public void I_switch_to_active_modal() {
+	public void switchToActiveModal() {
 		webDriver.switchTo().activeElement();
 	}
+
+	@When("^I open the Product Side Bar$")
+	public void openProductSideBar() {
+		int attempts = 0;
+		do {sleep(1000);} while (!hasXPath("product_menu_control_panel") && (attempts++ <= 10));
+
+		click("product_menu_toggle", "");
+	}
+
+	@When("^I expand the \"([^\"]*)\" panel$")
+	public void expandPanel(String accessName) {
+		int attempts = 0;
+		do {sleep(1000);} while (!hasXPath(xpath("product_menu_collapsed_panel", accessName)) && (attempts++ <= 10));
+
+		click("product_menu_panel_title", accessName);
+	}
+
+	@When("^I expand the \"([^\"]*)\" submenu$")
+	public void expandSubmenu(String accessName) {
+		int attempts = 0;
+		do {sleep(1000);} while (!hasXPath(xpath("product_menu_collapsed_submenu", accessName)) && (attempts++ <= 10));
+
+		click("link", accessName);
+	}
+
+	@When("^I open the \"([^\"]*)\" ellipsis menu$")
+	public void openEllipsisMenu(String menu_item) {
+		// TODO
+	}
+
+	@When("^I select \"([^\"]*)\" from the dropdown menu$")
+	public void selectFromDropdown(String menu_item) {
+		// TODO
+	}
+
+	@Then("^I should see the success message$")
+	public void expectSuccess() {
+		// TODO: Call isSuccess
+	}
+
+	/*
+	Misc Steps
+	*/
 
 	@When("^I sleep for (\\d+) milliseconds$")
 	public void I_sleep_for(int milliseconds) {
 		sleep(milliseconds);
 	}
 
-	// Functions
+	/*
+	Helper Functions
+	*/
 
-	public void click(String type, String label) {
+	private String xpath(String type, String accessName) {
+		return jsonLocators.getJSONObject(type).getString(accessName);
+	}
+
+	private boolean hasXPath(String path) {
+		try {
+			webDriver.findElement(By.xpath(path));
+			return true;
+		}
+		catch (Exception e) {
+			return false;
+		}
+	}
+
+//	private boolean isSuccess() {
+//		// TODO: Check for success message, and return bool
+//	}
+
+	private void click(String type, String label) {
 		String path = jsonLocators.getJSONObject(type).getString("xpath");
 
 		path = path.replace("{access_name}", label);
@@ -92,7 +157,7 @@ public class StepDefinitions {
 		sleep(1000);
 	}
 
-	public void input(String type, String label, String text) {
+	private void input(String type, String label, String text) {
 		String path = jsonLocators.getJSONObject(type).getString("xpath");
 
 		path = path.replace("{access_name}", label);
@@ -101,7 +166,7 @@ public class StepDefinitions {
 		webDriver.findElement(By.xpath(path)).sendKeys(text);
 	}
 
-	public void sleep(long milliseconds) {
+	private void sleep(long milliseconds) {
 		try {
 			Thread.sleep(milliseconds);
 		}
