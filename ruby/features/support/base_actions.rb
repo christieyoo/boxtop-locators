@@ -1,7 +1,7 @@
 module BaseActions
 	extend Capybara::DSL
 
-	def self.element(element, opts={})
+	def element(element, opts={})
 		xpath = $locators_hash[element]['xpath']
 		css = $locators_hash[element]['css']
 		label = opts[:label]
@@ -14,8 +14,8 @@ module BaseActions
 		end
 	end
 
-	def click(element, label='')
-		BaseActions.element(element, label: label).click
+	def click_object(element, label='')
+		element(element, label: label).click
 	end
 
 	def css(element)
@@ -23,15 +23,15 @@ module BaseActions
 	end
 
 	def has_success_message?
-		BaseActions.element("alert_success").visible?
+		element("alert_success").visible?
 	end
 
-	def input(element, text, label='')
-		BaseActions.element(element, label: label).set text
+	def input_text(element, text, label='')
+		element(element, label: label).set text
 	end
 
 	def select_item(element, item)
-		BaseActions.element(element, label: item).click
+		element(element, label: item).click
 	end
 
 	def xpath(element, access_name='')
