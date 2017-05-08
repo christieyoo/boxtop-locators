@@ -13,9 +13,9 @@ By serializing the locators, we are able to generalize locators to be used in ju
 
 ## Usage
 
-The json structure for locators should be simple for users to be able to look through the index. In this example we have a button object in base.json. In this index of objects we're able to share a generic locator for the button object with other frameworks. 
+The json structure for locators should be simple for users to be able to look through the index. In this example we have a locator for a toggle on a product menu in base.json. In this index of elements we're able to share a generic locator for the toggle element with other frameworks. 
 
-As a child, we have a *wait_for_present* node that carries a description and elements to wait for or not wait for. This can also be used with *wait_for_not_present* to wait for something to not be there. In an effort to keep things DRY, in the *wait_for_present* / *wait_for_not_present* nodes, we call the name of the element that we're storing int he same locator file.
+As a child, we have a *wait_for_present* node that carries a description and elements to wait for or not wait for. This can also be used with *wait_for_not_present* to wait for something to not be there. In an effort to keep things DRY, in the *wait_for_present* / *wait_for_not_present* nodes, we call the name of the element that we're storing in the same locator file.
 
 locators/product_menu.json:
 
